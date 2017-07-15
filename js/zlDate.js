@@ -1,13 +1,13 @@
-﻿/*本代码由素材家园原创，转载请保留网址：www.sucaijiayuan.com*/
+﻿
 var obj = { date: new Date(), year: -1, month: -1, priceArr: [] };
 var htmlObj = { header: "", left: "", right: "" };
 var houseId = null;
 var roomId = null;
-var elemId = null;
 var mType = 0;
+var elem = null;
 
-function getAbsoluteLeft(objectId) {
-    var o = document.getElementById(objectId)
+function getAbsoluteLeft() {
+    o=elem;
     var oLeft = o.offsetLeft;
     while (o.offsetParent != null) {
         oParent = o.offsetParent
@@ -17,8 +17,8 @@ function getAbsoluteLeft(objectId) {
     return oLeft
 }
 //获取控件上绝对位置
-function getAbsoluteTop(objectId) {
-    var o = document.getElementById(objectId);
+function getAbsoluteTop() {
+    o=elem;
     var oTop = o.offsetTop;
     while (o.offsetParent != null) {
         oParent = o.offsetParent
@@ -28,34 +28,33 @@ function getAbsoluteTop(objectId) {
     return oTop
 }
 //获取控件宽度
-function getElementWidth(objectId) {
-    x = document.getElementById(objectId);
-    return x.clientWidth;
+function getElementWidth() {
+    return elem.clientWidth;
 }
 //获取控件高度
-function getElementHeight(objectId) {
-    x = document.getElementById(objectId);
-    return x.clientHeight;
+function getElementHeight() {
+    return elem.clientHeight;
 }
 
-function location_x(objectId) {
-    if($("#"+objectId).attr("location")=='right'){
-        return getAbsoluteLeft(objectId)+getElementWidth(objectId)+10;
+function location_x() {
+    if($(elem).attr("location")=='right'){
+        return getAbsoluteLeft()+getElementWidth()+10;
     }else {
-        return getAbsoluteLeft(objectId);
+        return getAbsoluteLeft();
     }
 }
 
-function location_y(objectId) {
-    if($("#"+objectId).attr("location")=='right'){
-        return getAbsoluteTop(objectId);
+function location_y() {
+    if($(elem).attr("location")=='right'){
+        return getAbsoluteTop();
     }else {
-        return getAbsoluteTop(objectId)+getElementHeight(objectId)+10;
+        return getAbsoluteTop()+getElementHeight()+10;
     }
 }
 
 var pickerEvent = {
-    Init: function (houseid,roomid,elemid,mtype) {
+    Init: function (e,houseid,roomid,mtype) {
+        elem = e;
         if (obj.year == -1) {
             dateUtil.getCurrent();
         }
@@ -75,15 +74,13 @@ var pickerEvent = {
         html += "</div></div>";
         houseId = houseid;
         roomId = roomid;
-        elemId = elemid;
         mType = mtype;
-        var elemObj = document.getElementById(elemid);
         $(document.body).append(html);
         document.getElementById("picker_last").onclick = pickerEvent.getLast;
         document.getElementById("picker_next").onclick = pickerEvent.getNext;
         document.getElementById("picker_today").onclick = pickerEvent.getToday;
-        document.getElementById("calendar_choose").style.left = location_x(elemid)+"px";
-        document.getElementById("calendar_choose").style.top  = location_y(elemid)+"px";
+        document.getElementById("calendar_choose").style.left = location_x()+"px";
+        document.getElementById("calendar_choose").style.top  = location_y()+"px";
         document.getElementById("calendar_choose").style.zIndex = 1000;
         var tds = document.getElementById("calendar_tab").getElementsByTagName("td");
         for (var i = 0; i < tds.length; i++) {
@@ -98,15 +95,15 @@ var pickerEvent = {
     },
     getLast: function () {
         dateUtil.getLastDate();
-        pickerEvent.Init(houseId,roomId,elemId,mType);
+        pickerEvent.Init(e,houseId,roomId,mType);
     },
     getNext: function () {
         dateUtil.getNexDate();
-        pickerEvent.Init(houseId,roomId,elemId,mType);
+        pickerEvent.Init(e,houseId,roomId,mType);
     },
     getToday:function(){
         dateUtil.getCurrent();
-        pickerEvent.Init(houseId,roomId,elemId,mType);
+        pickerEvent.Init(e,houseId,roomId,mType);
     },
     setPriceArr: function (arr) {
         obj.priceArr = arr;
@@ -255,10 +252,6 @@ var commonUtil = {
 
         var date = sender.getAttribute("date");
         var price = sender.getAttribute("price");
-        var el = document.getElementById(elemId);
-        if (el == null) {
-            return;
-        }
 
         var input = $(sender).find('span.input');
         var calendarPrice = $(sender).find('span.calendar_price01');
