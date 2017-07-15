@@ -11,12 +11,12 @@
     .calendar_btn{margin-top:10px;padding:0px 5px;height:30px;line-height:30px;border-radius:3px;border:1px solid #ccc;cursor:pointer;text-align:center;}
 </style>
 <script>
-    function AjaxTime(e,houseId){
-        $.get("http://qz.icloudinn.com/api/room_price_calendar?house_id="+houseId,function(data) {
+    function AjaxTime(e,id){
+        $.get("http://qz.icloudinn.com/api/room_price_calendar?house_id="+id,function(data) {
             if(data.code==100){
                 pickerEvent.setPriceArr(data.data);
             }
-            pickerEvent.Init(e,houseId,houseId,"calendar_"+houseId,1);
+            pickerEvent.Init(e,id);
         });
     }
 </script>

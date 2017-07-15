@@ -1,10 +1,9 @@
 ﻿
 var obj = { date: new Date(), year: -1, month: -1, priceArr: [] };
 var htmlObj = { header: "", left: "", right: "" };
-var houseId = null;
-var roomId = null;
-var mType = 0;
-var elem = null;
+
+var elem = null;//日历按钮对象
+var id = null;//数据资源ID
 
 function getAbsoluteLeft() {
     o=elem;
@@ -53,7 +52,7 @@ function location_y() {
 }
 
 var pickerEvent = {
-    Init: function (e,houseid,roomid,mtype) {
+    Init: function (e,mId) {
         elem = e;
         if (obj.year == -1) {
             dateUtil.getCurrent();
@@ -72,9 +71,7 @@ var pickerEvent = {
         html += htmlObj.right;
         html += '<div style="clear: both;"></div>';
         html += "</div></div>";
-        houseId = houseid;
-        roomId = roomid;
-        mType = mtype;
+        id = mId;
         $(document.body).append(html);
         document.getElementById("picker_last").onclick = pickerEvent.getLast;
         document.getElementById("picker_next").onclick = pickerEvent.getNext;
@@ -90,20 +87,18 @@ var pickerEvent = {
                 };
             }
         }
-        // return html;
-        //return elemObj;
     },
     getLast: function () {
         dateUtil.getLastDate();
-        pickerEvent.Init(e,houseId,roomId,mType);
+        pickerEvent.Init(elem,id);
     },
     getNext: function () {
         dateUtil.getNexDate();
-        pickerEvent.Init(e,houseId,roomId,mType);
+        pickerEvent.Init(elem,id);
     },
     getToday:function(){
         dateUtil.getCurrent();
-        pickerEvent.Init(e,houseId,roomId,mType);
+        pickerEvent.Init(elem,id);
     },
     setPriceArr: function (arr) {
         obj.priceArr = arr;
@@ -293,22 +288,10 @@ var commonUtil = {
                 input.hide();
                 return;
             }
-            var params;
-            if(mType==1){//如果为整套
-                params = {
+            var  params = {
                     day:date,
-                    house_id:houseId,
-                    type:mType,
                     price:newPrice,
                 };
-            }else {
-                params = {
-                    day:date,
-                    house_id:houseId,
-                    room_id:roomId,
-                    price:newPrice,
-                };
-            }
 
             $.post("/api/room_price_calendar",params,function(data,status){
 
@@ -326,7 +309,6 @@ var commonUtil = {
                 alert(data.msg);
             });
         })
-
 
     }
 }
