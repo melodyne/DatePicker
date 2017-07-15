@@ -1,0 +1,39 @@
+﻿.calendar{border: 2px solid #67c1fe;width: 450px;background-color: #fff;font-size:12px;font-family:"microsoft yahei";}
+.calendar .calendar_num{position: relative;height:28px;background: #67c1fe;margin:0px 0px 1px 0px;}
+.calendar .calendar_num li.bold{font-weight: bold;}
+.calendar .calendar_num li{float: right;width: 55px;height: 28px;line-height: 26px;text-align: center;color: #fff;}
+.calendar .calendar_num li.picker_today{position:absolute;top:0;left:0;cursor:pointer;width:65px;}
+.calendar ul, menu, dir{display: block;list-style-type: disc;-webkit-margin-before: 1em;-webkit-margin-after: 1em;-webkit-margin-start: 0px;-webkit-margin-end: 0px;-webkit-padding-start: 40px;}
+.calendar ul li, ol li{list-style: none;}
+.calendar .calendar_left{position: relative;float: left;width: 65px;height:270px;overflow:hidden;text-align: center;color: #1a477e;font-weight: bold;}
+.calendar .pkg_double_month .date_text{padding:0;height:40px;width:40px;position:absolute;top:50%;left:50%;margin-left:-20px;margin-top:-20px;}
+.calendar .calendar_left .border{border-bottom: 1px solid #eaeaea;}
+.calendar p{display: block;-webkit-margin-before: 1em;-webkit-margin-after: 1em;-webkit-margin-start: 0px;-webkit-margin-end: 0px;}
+.calendar .pkg_circle_top, .pkg_circle_bottom{background: url(../images/bg_calendar.png) no-repeat;}
+.calendar .pkg_circle_top{top: 20px;background-position: 0 -60px;}
+.calendar .pkg_circle_top, .pkg_circle_bottom{display: block;position: absolute;width: 36px;padding-top: 19px;height: 0;overflow: hidden;left: 50%;margin-left: -18px;text-decoration: none;}
+.calendar .pkg_circle_top:hover{background-position: -40px -60px;}
+.calendar .pkg_circle_bottom:hover{background-position: -40px -93px;}
+.calendar .pkg_circle_bottom_disable, .pkg_circle_bottom_disable:hover{background-position: -80px -93px;cursor: default;}
+.calendar .pkg_circle_bottom{bottom: 20px;background-position: 0 -93px;}
+.calendar .pkg_circle_bottom_disable, .pkg_circle_bottom_disable:hover{background-position: -80px -93px;cursor: default;}
+.calendar .calendar_right{float: left;width: 385px;height:270px;}
+.calendar table{display: table;border-collapse: collapse;border-spacing: 2px;border-color: gray;}
+.calendar tbody{display: table-row-group;vertical-align: middle;border-color: inherit;}
+.calendar tr{display: table-row;vertical-align: inherit;border-color: inherit;}
+.calendar .calendar_right td{height: 44px;border: 1px solid #eaeaea;border-width: 0 0 1px 1px;vertical-align:top;color: #aaa;max-width: 45px;}
+.calendar .calendar_right .on{cursor: pointer;}
+.calendar a{color: #0065bb;text-decoration: none;outline: none;}
+.calendar .calendar_right a{display: block;width: 45px;height: 40px;color: #aaa;padding:4px 4px 0;}
+.calendar .calendar_right .on .date{color: #333;}
+.calendar .calendar_right .on a:hover{position: absolute;border: 1px solid #febe32;margin: -1px 0 0 -1px;background-color: #fffbee;}
+.calendar .calendar_right .date{display: block;text-align: center}
+.calendar .calendar_right .today{margin: -1px 0 0 -1px;background-color: #fffbee;}
+.calendar .calendar_right .on .team{color: #339900;}
+.calendar .calendar_right .team{display: block;text-align: right;height: 16px;line-height: 16px;}
+.calendar .calendar_right .on .calendar_price01{display:block;color: #ff6000;text-align: center;}
+.calendar dfn{font-style: normal;font-size: 12px;font-family: Arial !important;}
+.calendar .calendar_loding{float: right;width: 591px;text-align: center;padding: 147px 0;}
+.calendar .calendar_loding img{vertical-align: middle;margin-right: 10px;}
+.calendar img, fieldset{margin: 0;padding: 0;border: 0;}
+/*本代码由素材家园原创，转载请保留网址：www.sucaijiayuan.com*/

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>仿携程网带价格的jQuery日期选择控件 - 素材家园(www.sucaijiayuan.com)</title>
+<link href="css/datepicker.css" rel="stylesheet" />
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/zlDate.js"></script>
+<style type="text/css">
+    *{margin:0;padding:0px;}
+    .calendar_btn{margin-top:10px;padding:0px 5px;height:30px;line-height:30px;border-radius:3px;border:1px solid #ccc;cursor:pointer;text-align:center;}
+</style>
+<script>
+    function AjaxTime(houseId){
+        $.get("http://qz.icloudinn.com/api/room_price_calendar?house_id="+houseId,function(data) {
+            if(data.code==100){
+                pickerEvent.setPriceArr(data.data);
+            }
+            pickerEvent.Init(houseId,houseId,"calendar_"+houseId,1);
+        });
+    }
+</script>
+</head>
+
+<body>
+ <div style="margin-top: 5px">
+    <input id="calendar_2323}" style="width: 124px" location="right" class="calendar_btn" name="calendar" readonly="readonly" onclick="AjaxTime('2323');" placeholder="整套价格日历"/>
+</div>
+ <div style="margin-top: 5px">
+    <input id="calendar_2324}" style="width: 124px" location="right" class="calendar_btn" name="calendar" readonly="readonly" onclick="AjaxTime('2324');" placeholder="整套价格日历"/>
+</div>
+</body>
+</html>
