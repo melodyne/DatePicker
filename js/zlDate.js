@@ -1,12 +1,10 @@
-﻿
-var obj = { date: new Date(), year: -1, month: -1, priceArr: [] };
-var htmlObj = { header: "", left: "", right: "" };
+﻿var obj = {date: new Date(), year: -1, month: -1, priceArr: []};
+var htmlObj = {header: "", left: "", right: ""};
 
 var elem = null;//日历按钮对象
-var id = null;//数据资源ID
 
 function getAbsoluteLeft() {
-    o=elem;
+    o = elem;
     var oLeft = o.offsetLeft;
     while (o.offsetParent != null) {
         oParent = o.offsetParent
@@ -17,7 +15,7 @@ function getAbsoluteLeft() {
 }
 //获取控件上绝对位置
 function getAbsoluteTop() {
-    o=elem;
+    o = elem;
     var oTop = o.offsetTop;
     while (o.offsetParent != null) {
         oParent = o.offsetParent
@@ -36,23 +34,23 @@ function getElementHeight() {
 }
 
 function location_x() {
-    if($(elem).attr("location")=='right'){
-        return getAbsoluteLeft()+getElementWidth()+10;
-    }else {
+    if ($(elem).attr("location") == 'right') {
+        return getAbsoluteLeft() + getElementWidth() + 10;
+    } else {
         return getAbsoluteLeft();
     }
 }
 
 function location_y() {
-    if($(elem).attr("location")=='right'){
+    if ($(elem).attr("location") == 'right') {
         return getAbsoluteTop();
-    }else {
-        return getAbsoluteTop()+getElementHeight()+10;
+    } else {
+        return getAbsoluteTop() + getElementHeight() + 10;
     }
 }
 
 var pickerEvent = {
-    Init: function (e,mId) {
+    Init: function (e) {
         elem = e;
         if (obj.year == -1) {
             dateUtil.getCurrent();
@@ -71,13 +69,12 @@ var pickerEvent = {
         html += htmlObj.right;
         html += '<div style="clear: both;"></div>';
         html += "</div></div>";
-        id = mId;
         $(document.body).append(html);
         document.getElementById("picker_last").onclick = pickerEvent.getLast;
         document.getElementById("picker_next").onclick = pickerEvent.getNext;
         document.getElementById("picker_today").onclick = pickerEvent.getToday;
-        document.getElementById("calendar_choose").style.left = location_x()+"px";
-        document.getElementById("calendar_choose").style.top  = location_y()+"px";
+        document.getElementById("calendar_choose").style.left = location_x() + "px";
+        document.getElementById("calendar_choose").style.top = location_y() + "px";
         document.getElementById("calendar_choose").style.zIndex = 1000;
         var tds = document.getElementById("calendar_tab").getElementsByTagName("td");
         for (var i = 0; i < tds.length; i++) {
@@ -90,15 +87,15 @@ var pickerEvent = {
     },
     getLast: function () {
         dateUtil.getLastDate();
-        pickerEvent.Init(elem,id);
+        pickerEvent.Init(elem);
     },
     getNext: function () {
         dateUtil.getNexDate();
-        pickerEvent.Init(elem,id);
+        pickerEvent.Init(elem);
     },
-    getToday:function(){
+    getToday: function () {
         dateUtil.getCurrent();
-        pickerEvent.Init(elem,id);
+        pickerEvent.Init(elem);
     },
     setPriceArr: function (arr) {
         obj.priceArr = arr;
@@ -125,7 +122,7 @@ var pickerHtml = {
         htmlObj.header = head;
     },
     getLeft: function () {
-        var left = '<div class="calendar_left pkg_double_month"><p class="date_text">' + obj.year + '年<br>' + obj.month + '月</p><a href="javascript:void()" title="上一月" id="picker_last" class="pkg_circle_top">上一月</a><a href="javascript:void()" title="下一月" id="picker_next" class="pkg_circle_bottom ">下一月</a></div>';
+        var left = '<div class="calendar_left pkg_double_month"><p class="date_text">' + obj.year + '年<br>' + obj.month + '月</p><a href="javascript:void(0)" title="上一月" id="picker_last" class="pkg_circle_top">上一月</a><a href="javascript:void(0)" title="下一月" id="picker_next" class="pkg_circle_bottom ">下一月</a></div>';
         htmlObj.left = left;
     },
     getRight: function () {
@@ -147,15 +144,15 @@ var pickerHtml = {
                     classStyle = "class='on'";
                 }
 
-                if (price != -1&&obj.year==new Date().getFullYear()&&obj.month==new Date().getMonth()+1&&i-c==new Date().getDate()) {
+                if (price != -1 && obj.year == new Date().getFullYear() && obj.month == new Date().getMonth() + 1 && i - c == new Date().getDate()) {
                     classStyle = "class='on today'";
                 }
                 //判断今天
-                if(obj.year==new Date().getFullYear()&&obj.month==new Date().getMonth()+1&&i-c==new Date().getDate()){
-                    html += '<td  ' + classStyle + ' date="' + obj.year + "-" + obj.month + "-" + (i - c) + '" price="' + price + '"><a><span class="date basefix">今天</span><span class="team basefix" style="display: none;">&nbsp;</span><span class="calendar_price01">' + priceStr + '</span></a></td>';
-                }
-                else{
-                    html += '<td  ' + classStyle + ' date="' + obj.year + "-" + obj.month + "-" + (i - c) + '" price="' + price + '"><a><span class="date basefix">' + (i - c) + '</span><span class="team basefix" style="display: none;">&nbsp;</span><span class="calendar_price01">' + priceStr + '</span></a></td>';
+                var date = formatDate(obj.year,obj.month,i-c);
+                if (obj.year == new Date().getFullYear() && obj.month == new Date().getMonth() + 1 && i - c == new Date().getDate()) {
+                    html += '<td  ' + classStyle + ' date="' + date + '" price="' + price + '"><a><span class="date basefix">今天</span><span class="team basefix" style="display: none;">&nbsp;</span><span class="calendar_price01">' + priceStr + '</span></a></td>';
+                } else {
+                    html += '<td  ' + classStyle + ' date="' + date + '" price="' + price + '"><a><span class="date basefix">' + (i - c) + '</span><span class="team basefix" style="display: none;">&nbsp;</span><span class="calendar_price01">' + priceStr + '</span></a></td>';
                 }
                 if (index == 6) {
 
@@ -232,12 +229,10 @@ var dateUtil = {
 }
 var commonUtil = {
     getPrice: function (day) {
-        var dt = obj.year + "-";
-        dt+=obj.month;
-        dt += "-" + day;
+        var date = formatDate(obj.year,obj.month,day);
 
         for (var i = 0; i < obj.priceArr.length; i++) {
-            if (obj.priceArr[i].day == dt) {
+            if (obj.priceArr[i].day == date) {
                 return parseInt(obj.priceArr[i].price);
             }
         }
@@ -253,15 +248,15 @@ var commonUtil = {
         $(sender).removeClass();//移除on
         calendarPrice.hide();
 
-        if(input.html()){
+        if (input.html()) {
             input.show();
-        }else {
+        } else {
             $(sender).children().append("<span class='input'>¥<input style='width: 30px;margin-left: 3px' maxlength='4'></span>");
             input = $(sender).find('span.input');
         }
 
         //给输入框写入初始值
-        if(price!=-1){
+        if (price != -1) {
             $(sender).find('input').val(price);
         }
 
@@ -271,43 +266,36 @@ var commonUtil = {
 
             //获取输入框价格
             var newPrice = $(sender).find('input').val();
-            if(newPrice==price){
-                $(sender).addClass("on");
-                calendarPrice.show();
-                input.hide();
-                return ;
-            }
-            if(newPrice){
-                var re = /^[0-9]+$/ ;
-                if(!re.test(newPrice)){
-                    alert("请输入位正整数！");return;
-                }
-            }else {
+            if (newPrice == price) {
                 $(sender).addClass("on");
                 calendarPrice.show();
                 input.hide();
                 return;
             }
-            var  params = {
-                    day:date,
-                    price:newPrice,
-                };
-
-            $.post("/api/room_price_calendar",params,function(data,status){
-
-                if(data.code==100){
-                    input.hide();
-                    $(sender).attr("price",newPrice);
-                    $(sender).toggleClass('on');
-
-                    if(calendarPrice.html()){
-                        calendarPrice.show();
-                    }else {
-                        calendarPrice.append("<dfn>¥</dfn>" +$(sender).attr("price")).show();
-                    }
+            if (newPrice) {
+                var re = /^[0-9]+$/;
+                if (!re.test(newPrice)) {
+                    alert("请输入位正整数！");
+                    return;
                 }
-                alert(data.msg);
-            });
+            } else {
+                $(sender).addClass("on");
+                calendarPrice.show();
+                input.hide();
+                return;
+            }
+
+            input.hide();
+            $(sender).attr("price", newPrice);
+            $(sender).toggleClass('on');
+
+            if (calendarPrice.html()) {
+                calendarPrice.hide();
+            } else {
+                calendarPrice.append("<dfn>¥</dfn>" + $(sender).attr("price")).hide();
+            }
+            changePrice(date, newPrice, calendarPrice);//设置修改价格，该方法需要自己实现
+
         })
 
     }
@@ -324,3 +312,25 @@ $(document).bind("click", function (event) {
     }
     pickerEvent.remove();
 });
+
+/**
+ * 格式化日期
+ * @param y
+ * @param m
+ * @param d
+ */
+function formatDate(y,m,d) {
+    var date = y + "-";
+    if (m < 10) {
+        date += "0" + m;
+    } else {
+        date += m;
+    }
+    if (d < 10) {
+        date += "-0" + d;
+    } else {
+        date += "-" + d;
+    }
+
+    return date;
+}

@@ -1,33 +1,78 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>仿携程网带价格的jQuery日期选择控件 - 素材家园(www.sucaijiayuan.com)</title>
-<link href="css/datepicker.css" rel="stylesheet" />
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/zlDate.js"></script>
-<style type="text/css">
-    *{margin:0;padding:0px;}
-    .calendar_btn{margin-top:10px;padding:0px 5px;height:30px;line-height:30px;border-radius:3px;border:1px solid #ccc;cursor:pointer;text-align:center;}
-</style>
-<script>
-    function AjaxTime(e,id){
-        $.get("http://qz.icloudinn.com/api/room_price_calendar?house_id="+id,function(data) {
-            if(data.code==100){
-                pickerEvent.setPriceArr(data.data);
-            }
-            pickerEvent.Init(e,id);
-        });
-    }
-</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>jQuery价格日历控件 - 显示价格日历、修改价格日历</title>
+    <link href="css/datepicker.css" rel="stylesheet"/>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/zlDate.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0px;
+        }
+
+        .calendar_btn {
+            margin-top: 10px;
+            padding: 0px 5px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+    <script>
+        var hotelId = null;//酒店ID
+        /**
+         * 显示价格日历
+         * @param e 按钮元素对象
+         * @param id 资源ID（酒店ID）
+         */
+        function showCalendar(e, id) {
+            hotelId = id;
+            $.get('data.json?hotel_id=' + hotelId, function (data) {
+                console.log(data);
+                pickerEvent.setPriceArr(data);
+                pickerEvent.Init(e);
+            });
+        }
+
+        /**
+         * 修改价格
+         * @param date
+         * @param newPrice
+         * @param calendarPrice
+         */
+        function changePrice(date, newPrice, calendarPrice) {
+            alert('修改价格' + date + "天的价格为" + newPrice);
+            var params = {
+                hotelId: hotelId,
+                date: date,
+                price: newPrice
+            };
+            $.post('change.json?hotel_id=' + hotelId, params, function (data, status) {
+
+                if (data.code == 100) {
+                    calendarPrice.show();
+                } else {
+                    alert("修改失败！");
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
- <div style="margin-top: 5px">
-    <input style="width: 124px" location="right" class="calendar_btn" name="calendar" readonly="readonly" onclick="AjaxTime(this,'2323');" placeholder="整套价格日历"/>
+<div style="margin: 50px">
+    <input style="width: 124px" location="right" class="calendar_btn" name="calendar" readonly="readonly"
+           onclick="showCalendar(this,'232');" placeholder="酒店价格日历"/>
 </div>
- <div style="margin-top: 5px">
-    <input style="width: 124px" location="right" class="calendar_btn" name="calendar" readonly="readonly" onclick="AjaxTime(this,'2324');" placeholder="整套价格日历"/>
+<div style="margin: 50px">
+    <input style="width: 124px" location="right" class="calendar_btn" name="calendar" readonly="readonly"
+           onclick="showCalendar(this,'233');" placeholder="酒店价格日历"/>
 </div>
 </body>
 </html>
