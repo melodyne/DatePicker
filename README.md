@@ -35,7 +35,7 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/zlDate.js"></script>
 ```
-第二步：初始化主键
+第二步：初始化组键
 ```
 pickerEvent.setPriceArr(data);
 pickerEvent.Init(e);
@@ -45,13 +45,18 @@ pickerEvent.Init(e);
 /**
  * 修改价格
  * @param date           // 日期
- * @param newPrice       //新价格
- * @param calendarPrice  //日历控件对象
+ * @param newPrice       // 新价格
+ * @param calendarPrice  // 日历控件对象
  */
 function changePrice(date, newPrice, calendarPrice) {
+    
     alert('修改价格' + date + "天的价格为" + newPrice);
-    // 在这里实现修改，也就是在这里用调用你的修改接口
-    // 修改成功 则执行 calendarPrice.show();
+    
+    /*
+       在这里实现修改，也就是在这里用调用你的修改接口
+       修改成功 则执行 calendarPrice.show();
+     */
+     
 }
 ```
 
