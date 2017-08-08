@@ -1,7 +1,7 @@
 # DatePicker 价格日历控件
 
-![ee](https://qz-ota.oss-cn-shenzhen.aliyuncs.com/show.gif){ImgCap}{/ImgCap}
-![Foo](https://qz-ota.oss-cn-shenzhen.aliyuncs.com/show.gif)
+![ee](https://qz-ota.oss-cn-shenzhen.aliyuncs.com/show.gif)
+![Foo](http://qz-ota.oss-cn-shenzhen.aliyuncs.com/0%20%281%29.png)
 
 数据格式
 ```
