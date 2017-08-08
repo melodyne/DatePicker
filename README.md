@@ -1,6 +1,7 @@
 # DatePicker 价格日历控件
 
 ![Foo](http://oucxn6c3o.bkt.clouddn.com/show.gif)
+
 数据格式
 ```
 [
