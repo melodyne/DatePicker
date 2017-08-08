@@ -1,6 +1,6 @@
 # DatePicker 价格日历控件
 
-![Foo](http://qz-ota.oss-cn-shenzhen.aliyuncs.com/show.gif)
+![Foo](https://qz-ota.oss-cn-shenzhen.aliyuncs.com/show.gif)
 
 数据格式
 ```
