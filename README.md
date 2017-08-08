@@ -1,5 +1,6 @@
 # DatePicker 价格日历控件
 
+![Foo](http://oucxn6c3o.bkt.clouddn.com/show.gif)
 数据格式
 ```
 [
@@ -60,6 +61,6 @@ function changePrice(date, newPrice, calendarPrice) {
 }
 ```
 
-![Foo](http://i.weather.com.cn/images/cn/life/2017/04/11/11141533DF572FBBA092E37E6E843C656C318272.jpg)
+![Foo](http://oucxn6c3o.bkt.clouddn.com/show.gif)
 [链接文字](链接地址)
 例子： [Markdown](http://zh.wikipedia.com/wiki/Markdown)
