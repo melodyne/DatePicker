@@ -60,7 +60,3 @@ function changePrice(date, newPrice, calendarPrice) {
      
 }
 ```
-
-![Foo](http://oucxn6c3o.bkt.clouddn.com/show.gif)
-[链接文字](链接地址)
-例子： [Markdown](http://zh.wikipedia.com/wiki/Markdown)
