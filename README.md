@@ -61,3 +61,5 @@ function changePrice(date, newPrice, calendarPrice) {
      
 }
 ```
+请不要用浏览器直接打开index.html,把源码放在服务器环境下运行，否则无效果。
+
