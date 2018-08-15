@@ -2,7 +2,7 @@
 
 ![效果图](https://github.com/295124540/DatePicker/blob/master/show.gif)
 
-> 数据格式
+> * 数据格式
 ```
 [
     {
@@ -61,7 +61,7 @@ function changePrice(date, newPrice, calendarPrice) {
      
 }
 ```
-'有部分同学反映无法运行，请不要用浏览器直接打开index.html,请在服务器环境下访问该程序！'
+: 有部分同学反映无法运行，请不要用浏览器直接打开index.html,请在服务器环境下访问该程序！
 
-该代码是从大型项目中抽取出来的，如果对你有帮助请给个star！
+: 该代码是从大型项目中抽取出来的，如果对你有帮助请给个star！
 
