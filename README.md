@@ -31,18 +31,18 @@
     }
 ]
 ```
-> ##### 第一步：引入这三个文件**
+> #### 第一步：引入这三个文件**
 ```
 <link href="css/datepicker.css" rel="stylesheet"/>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/zlDate.js"></script>
 ```
-> ##### 第二步：初始化组件**
+> #### 第二步：初始化组件**
 ```
 pickerEvent.setPriceArr(data);
 pickerEvent.Init(e);
 ```
-> ##### 第三步：全局实现修改价格方法**
+> #### 第三步：全局实现修改价格方法**
 ```
 /**
  * 修改价格
