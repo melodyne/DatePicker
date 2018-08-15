@@ -61,6 +61,13 @@ function changePrice(date, newPrice, calendarPrice) {
      
 }
 ```
+**控件位置**
+> location="right" 其中值有`top`,`right`,`bottom`,`left` 分别居于按钮的上，右，下，左
+```
+<input style="width: 124px" location="right" class="calendar_btn" name="calendar" readonly="readonly"
+           onclick="showCalendar(this,'232');" placeholder="酒店价格日历"/>
+```
+
 > 有部分同学反映无法运行，请不要用浏览器直接打开index.html,请在服务器环境下访问该程序！  
 > 该代码是从大型项目中抽取出来的，如果您觉得我的此项目对您有些帮助,您的star就是对我最大的鼓励！
 
