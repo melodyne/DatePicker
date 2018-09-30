@@ -68,6 +68,6 @@ function changePrice(date, newPrice, calendarPrice) {
            onclick="showCalendar(this,'232');" placeholder="酒店价格日历"/>
 ```
 
-> 有部分同学反映无法运行，请不要用浏览器直接打开index.html,请在服务器环境下访问该程序！  
+> 有部分同学反映无法运行，因为数据是通过接口获取的，所以请不要用浏览器直接打开index.html,请在服务器环境下访问该程序！  
 > 该代码是从大型项目中抽取出来的，如果您觉得我的此项目对您有些帮助,您的star就是对我最大的鼓励！
 
