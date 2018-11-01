@@ -68,22 +68,27 @@ var pickerEvent = {
         html += htmlObj.left;
         html += htmlObj.right;
         html += '<div style="clear: both;"></div>';
-        html += "</div></div>";
-        $(document.body).append(html);
-        document.getElementById("picker_last").onclick = pickerEvent.getLast;
-        document.getElementById("picker_next").onclick = pickerEvent.getNext;
-        document.getElementById("picker_today").onclick = pickerEvent.getToday;
-        document.getElementById("calendar_choose").style.left = location_x() + "px";
-        document.getElementById("calendar_choose").style.top = location_y() + "px";
-        document.getElementById("calendar_choose").style.zIndex = 1000;
-        var tds = document.getElementById("calendar_tab").getElementsByTagName("td");
-        for (var i = 0; i < tds.length; i++) {
-            if (tds[i].getAttribute("date") != null && tds[i].getAttribute("date") != "") {
-                tds[i].onclick = function () {
-                    commonUtil.chooseClick(this)
-                };
+        html += "</div></div>"
+
+        // 异步执行，主要为了让remove()在控制渲染前执行
+        setTimeout(function () {
+            $('body').append(html);
+            document.getElementById("picker_last").onclick = pickerEvent.getLast;
+            document.getElementById("picker_next").onclick = pickerEvent.getNext;
+            document.getElementById("picker_today").onclick = pickerEvent.getToday;
+            document.getElementById("calendar_choose").style.left = location_x() + "px";
+            document.getElementById("calendar_choose").style.top = location_y() + "px";
+            document.getElementById("calendar_choose").style.zIndex = 1000;
+            var tds = document.getElementById("calendar_tab").getElementsByTagName("td");
+            for (var i = 0; i < tds.length; i++) {
+                if (tds[i].getAttribute("date") != null && tds[i].getAttribute("date") != "") {
+                    tds[i].onclick = function () {
+                        commonUtil.chooseClick(this)
+                    };
+                }
             }
-        }
+        },10);
+
     },
     getLast: function () {
         dateUtil.getLastDate();

@@ -24,55 +24,161 @@
             text-align: center;
         }
     </style>
-    <script>
-        var hotelId = null;//酒店ID
-        /**
-         * 显示价格日历
-         * @param e 按钮元素对象
-         * @param id 资源ID（酒店ID）
-         */
-        function showCalendar(e, id) {
-            hotelId = id;
-            $.get('data.json?hotel_id=' + hotelId, function (data) {
-                console.log(data);
-                pickerEvent.setPriceArr(data);
-                pickerEvent.Init(e);
-            });
-        }
-
-        /**
-         * 修改价格
-         * @param date
-         * @param newPrice
-         * @param calendarPrice
-         */
-        function changePrice(date, newPrice, calendarPrice) {
-            alert('修改价格' + date + "天的价格为" + newPrice);
-            var params = {
-                hotelId: hotelId,
-                date: date,
-                price: newPrice
-            };
-            $.post('change.json?hotel_id=' + hotelId, params, function (data, status) {
-
-                if (data.code == 100) {
-                    calendarPrice.show();
-                } else {
-                    alert("修改失败！");
-                }
-            });
-        }
-    </script>
 </head>
 
 <body>
 <div style="margin: 50px">
     <input style="width: 124px" location="right" class="calendar_btn" name="calendar" readonly="readonly"
-           onclick="showCalendar(this,'232');" placeholder="酒店价格日历"/>
+           onclick="showCalendar(this,'232');" placeholder="酒店价格日历1"/>
 </div>
 <div style="margin: 50px">
     <input style="width: 124px" location="right" class="calendar_btn" name="calendar" readonly="readonly"
-           onclick="showCalendar(this,'233');" placeholder="酒店价格日历"/>
+           onclick="showCalendar(this,'233');" placeholder="酒店价格日历2"/>
 </div>
+<script>
+    var hotelId = null;//酒店ID
+    /**
+     * 显示价格日历
+     * @param e 按钮元素对象
+     * @param id 资源ID（酒店ID）
+     */
+    function showCalendar(e, id) {
+        hotelId = id;
+
+//        // 接口获取价格日历数据【接入项目是请使用这里的代码】
+//        $.get('data.json?hotel_id=' + hotelId, function (data) {
+//            console.log(data);
+//            pickerEvent.setPriceArr(data);// 设置数据
+//            pickerEvent.Init(e);// 开始初始化组件
+//        });
+
+        // 这里为了演示，我直接js赋值了，接入项目时请使用上面ajax请求接口动态获取数据
+        var myDate = new Date();
+        var y = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+        var m = myDate.getMonth()+1; //获取当前月份(0-11,0代表1月)
+        var ym = y+'-'+m;
+        var data = [
+            {
+                "day": ym+"-07",
+                "price": "200"
+            },
+            {
+                "day": ym+"-11",
+                "price": "300"
+            },
+            {
+                "day": ym+"-12",
+                "price": "100"
+            },
+            {
+                "day": ym+"-13",
+                "price": "158"
+            },
+            {
+                "day": ym+"-14",
+                "price": "1000"
+            },
+            {
+                "day": ym+"-16",
+                "price": "2500"
+            },
+            {
+                "day": ym+"-17",
+                "price": "800"
+            },
+            {
+                "day": y+"-11-15",
+                "price": "500"
+            },
+            {
+                "day": y+"-12-15",
+                "price": "158"
+            },
+            {
+                "day":  y+"-01-15",
+                "price": "500"
+            },
+            {
+                "day":  y+"-01-15",
+                "price": "158"
+            },
+            {
+                "day":  y+"-02-15",
+                "price": "700"
+            },
+            {
+                "day":  y+"-03-15",
+                "price": "59"
+            },
+            {
+                "day":  y+"-04-15",
+                "price": "666"
+            },
+            {
+                "day":  y+"-05-15",
+                "price": "59"
+            },
+            {
+                "day":  y+"-06-15",
+                "price": "888"
+            },
+            {
+                "day":  y+"-07-15",
+                "price": "450"
+            },
+            {
+                "day":  y+"-08-15",
+                "price": "59"
+            },
+            {
+                "day":  y+"-09-15",
+                "price": "600"
+            },
+            {
+                "day":  y+"-07-15",
+                "price": "59"
+            },
+            {
+                "day":  y+"-11-15",
+                "price": "59"
+            },
+            {
+                "day":  y+"-12-15",
+                "price": "100"
+            }
+        ];
+        console.log(data);
+        pickerEvent.setPriceArr(data);// 设置数据
+        pickerEvent.Init(e);// 开始初始化组件
+    }
+
+    /**
+     * 修改价格
+     * @param date
+     * @param newPrice
+     * @param calendarPrice
+     */
+    function changePrice(date, newPrice, calendarPrice) {
+        alert('修改价格' + date + "天的价格为" + newPrice);
+
+//        // 接口修改价格日历数据【接入项目是请使用这里的代码】
+//        var params = {
+//            hotelId: hotelId,
+//            date: date,
+//            price: newPrice
+//        };
+//        $.post('change.json?hotel_id=' + hotelId, params, function (data, status) {
+//
+//            if (data.code == 100) {
+//                calendarPrice.show();
+//            } else {
+//                alert("修改失败！");
+//            }
+//        });
+
+        // 这里为了演示，我直接模拟成功，接入项目时请使用上面ajax请求接口动态修改数据
+        calendarPrice.show();
+    }
+</script>
 </body>
 </html>
